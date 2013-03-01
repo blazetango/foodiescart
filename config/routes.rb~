@@ -1,9 +1,13 @@
 Foodiescart2::Application.routes.draw do
   
+  match '/auth/:provider/callback' => 'authentications#create'
+  match 'auth/:provider/callback', to: 'sessions#create'
+  resources :profiles
+
 
   resources :comments
 
-  get 'recipes/search_results', :as => :search
+  get 'recipes/search', :as => :search
   get "wallets/show"
 
   resources :order_transactions do

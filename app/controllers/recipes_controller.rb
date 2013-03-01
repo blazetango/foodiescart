@@ -34,6 +34,7 @@ end
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
+    @ingredient = Ingredient.all
   end
 
   # GET /recipes/1/edit

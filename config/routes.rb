@@ -1,6 +1,8 @@
 Foodiescart2::Application.routes.draw do
   
-
+  #match '/auth/:provider/callback', to: 'authentications#create'
+  match '/auth/:provider/callback' => 'authentications#create'
+  #match 'auth/:provider/callback', to: 'sessions#create'
   resources :profiles
 
 
