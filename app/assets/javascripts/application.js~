@@ -11,8 +11,15 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery-ui
+//= require fancybox
 //= require jquery_ujs
-//= require tabs
 //= require autocomplete-rails
 //= require jquery_nested_form
+//= require_tree .
+
+
+$(document).ready(function(){
+ $("a.image").fancybox ,({ajax: {
+  'dataType': 'html'})
+ $("a.fancybox").fancybox({'type':'ajax' });
+});

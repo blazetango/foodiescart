@@ -14,7 +14,6 @@ gem 'rails3-jquery-autocomplete'
 gem 'skeleton-rails'
 gem 'paperclip'
 gem 'nifty-generators'
-gem 'fancybox-rails'
 gem "friendly_id", "~> 4.0.1"
 gem 'activeadmin'
 gem 'activemerchant', :require => 'active_merchant'
@@ -24,6 +23,10 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'activeadmin-cancan'
 gem 'omniauth-google'
+gem 'jquery-rails'
+gem 'fancybox2-rails', '~> 0.2.4'
+
+
 
 
 
@@ -38,8 +41,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

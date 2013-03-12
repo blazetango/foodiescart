@@ -55,6 +55,7 @@
   <%= task_form.autocomplete_field :ingredient_name, autocomplete_ingredient_name_ingredient_recipes_path %>
   <%= task_form.link_to_remove "Remove this ingredient" %>
 <% end %><br>
+
 </div>
 <%= f.hidden_field :user_id , :value=>current_user.id  %>
 <br><br>

@@ -40,6 +40,7 @@ end
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+   
   end
 
   # POST /recipes

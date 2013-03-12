@@ -13,7 +13,12 @@
 //= require jquery
 //= require fancybox
 //= require jquery_ujs
-//= require tabs
-//= require jquery-ui
 //= require autocomplete-rails
 //= require jquery_nested_form
+//= require_tree .
+
+
+$(document).ready(function(){
+ $("a.image").fancybox ,({'type':'image' });
+ $("a.fancybox").fancybox({'type':'ajax' });
+});

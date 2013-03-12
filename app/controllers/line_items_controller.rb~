@@ -43,9 +43,17 @@ class LineItemsController < ApplicationController
   def create
     
     @line_item = LineItem.create(params[:line_item])
-    @product = Product.find("#{@line_item.product_id}")
+    @cart = Cart.new
+    @recipe = Recipe.find_by_id(:recipe_id)
+    @product = Product.find_by_id(:product_id)
+    @line_item.cart_id = @cart.id
+    @line_item.quantity = 1
+    @line_item.product_id = @product   
+    @line_item.recipe_id = @recipe 
+
+   # @product = Product.find("#{@line_item.product_id}")
     @line_item.save 
-    flash[:notice] = "Added #{@product.ingredient.name} to cart."
+    flash[:notice] = "Added  to cart."
     redirect_to current_cart_url
   end
 

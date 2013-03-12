@@ -1,14 +1,10 @@
 class IngredientsController < ApplicationController
- autocomplete :ingredient, :name
   # GET /ingredients
   # GET /ingredients.json
   def index
     @ingredients = Ingredient.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @ingredients }
-    end
+   # @ingredients = Ingredient.order(:name).where("name like ?", "%#{params[:term]}%")
+    #render json: @ingredients.map(&:name)
   end
 
   # GET /ingredients/1

@@ -76,10 +76,6 @@
 
 #aside h3 { margin: 0; }
 
-
-
-
-
  hr { display: block; height: 1px;
     border: 0; border-top: 1px solid #ccc;
     background-color: #123455;
@@ -97,8 +93,9 @@
 <div class="page-header">
 
   <%= link_to 'Back to List', recipes_path %> | 
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_recipe_path(@recipe), :class => 'btn' %> | 
+  <%= link_to 'edit', edit_recipe_path(@recipe), :remote => true, :class => "fancybox" %> | 
+
+
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               recipe_path(@recipe),
               :method => 'delete',
@@ -106,13 +103,14 @@
               :class => 'btn btn-danger' %><br><br>
 </b>
 
-
 </div>
 
-<% if @recipe.photo.exists? then %>
-   <%= image_tag @recipe.photo.url(:small) %><br><br>
+   <% if @recipe.photo.exists? then %>
+   <%= link_to image_tag(@recipe.photo.url(:thumb)), @recipe.photo.url(:small), :remote =>true, :class => "image" %>
+ 
   <m><%= @recipe.name %> </m> | 
    <% if @recipe.tested %>
+
     <b>Tested<%= image_tag('right-mark-th.png', :size => "20x20") %></b> | <b><%= @recipe.difficulty_level %></b> | 
    <% else %>
     <b style ="color:red"> not tested</b> | <b><%= @recipe.difficulty_level %></b> 
@@ -125,8 +123,8 @@
   <%= @recipe.category.name %>
 </p>
 
-
 <p>
+
   <b><%= image_tag('time.png', :size=>"25x20")%></b>
    <% @t = @recipe.cooking_time %>
    <%= @t.strftime("%I minutes %M sec") %>
@@ -139,16 +137,16 @@
 </p>
 <div id="ingredients" style="border-radius:4px;padding:20px;background:silver;width:300px;">
     <h4><strong><%= model_class.human_attribute_name(:ingredients) %>:</strong></h4>
-      <% @recipe.ingredient_recipes.each do |i| %>
+      <% @recipe.ingredient_recipes.each                                                                                                                                                                                                                                                                                                                                                                                                do |i| %>
         <strong><%= link_to i.ingredient_name, i %></strong>
           <table>
             <% Product.find_all_by_ingredient_id(i.ingredient).each do |p| %>
              <tr>
               <td><%= link_to p.brand.company_name, p.brand %></td>
               <td><%= p.price %></td>
-              <td><b><%= link_to "BUY", product_path(p, :recipe_id => @recipe.id), :class=>"button_example" %>
+             <!-- <td><b><%= link_to "BUY", product_path(p, :recipe_id => @recipe.id),:remote=> :true, :class=>"button_example" %>-->                                                                          
                   </b></td>
-           <!--<td><b><%= link_to "BUY", line_items_path(:product_id => p.id, :recipe_id => @recipe.id) , :method => :post %></b></td>-->
+           <td><b><%= link_to "BUY", line_items_path(:product_id=> p.id, :recipe_id => @recipe.id) , :method => :post %></b></td>
             </tr><% end %></table><hr>
       <% end %>
 </div><br>
@@ -193,5 +191,12 @@
   <% end %><br>
   
 </div>
+<div id="aside">
+<div class ="similar-recipes">
+<h5 style="padding-left:0px;">current cart </h5><hr>
+  <% current_cart do |j|%>
+   <p><%= link_to image_tag(s.photo.url(:thumb)), s %></p>
+      <h5><%= s.name %></h5>-- <small><%= s.author_name %></small><hr>
+  <% end %><br>
+  
 </div>
-
