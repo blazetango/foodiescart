@@ -8,6 +8,7 @@
   </tr>
 
   <% for line_item in @cart.line_items %>
+   <%= line_item.inspect %>
     <tr class="<%= cycle :odd, :even %>">
       <td><%=h line_item.product.ingredient.name %></td>
       <td><%=h line_item.product.brand.name %></td>
@@ -19,7 +20,7 @@
 
   <tr>
     <td class="total price" colspan="5">
-      <br><b style ="margin-left:395px"> Total: <%=  @cart.total_price %> </b>
+      <br><b style ="margin-left:395px"> Total: <%= number_to_currency @cart.total_price %> </b>
     </td>
   </tr>
 

@@ -23,8 +23,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'activeadmin-cancan'
 gem 'omniauth-google'
-gem 'jquery-rails'
-gem 'fancybox2-rails', '~> 0.2.4'
+gem 'countries'
+
 
 
 
@@ -41,7 +41,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem 'jquery-rails'
+gem 'fancybox2-rails', '~> 0.2.4'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

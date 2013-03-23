@@ -1,0 +1,15 @@
+<%   unless cart.line_items.empty? %>
+your cart 	
+
+
+ <% for line_item in @cart.line_items %>
+
+    <tr class="<%= cycle :odd, :even %>">
+</br>
+      <td><%=h line_item.product.ingredient.name %></td>
+      <td><%=h line_item.product.brand.name %></td>
+      <td class="qty"><%= line_item.quantity %></td>
+      <td class="price"><%= number_to_currency(line_item.product.price) %></td>
+    </tr>
+  <% end %>
+ <% end %>

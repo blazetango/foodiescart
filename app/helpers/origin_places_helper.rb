@@ -1,0 +1,2 @@
+module OriginPlacesHelper
+end

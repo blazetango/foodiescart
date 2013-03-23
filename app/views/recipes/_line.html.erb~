@@ -1,0 +1,14 @@
+ <% for line_item in @cart.line_items %>
+<table>
+    <tr class="<%= cycle :odd, :even %>">
+      <td><%=h line_item.product.ingredient.name %></td>
+      <td><%=h line_item.product.brand.name %></td>
+      <td class="qty"><%= line_item.quantity %></td>
+
+      <td class="price"><%= number_to_currency(line_item.total_price) %></td>
+    </tr>
+  
+</table>
+  <%= link_to "checkout", new_order_path, :class=>"button" %>
+<% end %>
+

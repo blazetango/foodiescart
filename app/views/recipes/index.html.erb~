@@ -42,11 +42,11 @@
         <% end %>
     <p>
       Tags: <%= raw recipe.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-    </p></div>
+    </p>
     <p><%= link_to "Edit", edit_recipe_path(recipe) %> | 
        <%= link_to 'Remove', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></p><hr>
   <% end %>
-</div>
+
 
 <p><%= button_to "New Recipe", new_recipe_path, :method => :get, :class=> "button"  %></p>
-
+</div>

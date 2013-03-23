@@ -16,7 +16,7 @@
   <%= image_tag @product.photo.url(:large) %>
 <% end %>
 
-  <h1><%= @product.ingredient.name %></h1><hr>
+  <h2><%= @product.ingredient.name %></h2><hr>
   <p class="ingredient">
   <%= @product.ingredient.decsription %><br><br>
   Calorie Value :<%= @product.ingredient.calorie_value %><br>

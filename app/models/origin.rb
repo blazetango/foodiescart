@@ -1,0 +1,4 @@
+class Origin < ActiveRecord::Base
+  attr_accessible :country
+  has_many :recipes
+end

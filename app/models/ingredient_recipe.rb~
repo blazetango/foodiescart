@@ -11,7 +11,4 @@ class IngredientRecipe < ActiveRecord::Base
     self.ingredient = Ingredient.find_or_create_by_name(name) if name.present?
   end
 
-
-
-
 end

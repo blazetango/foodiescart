@@ -2,18 +2,18 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Foodies Cart" %></title>
-   <%= stylesheet_link_tag    "application", :media => "all" %>
-   <%= javascript_include_tag "application" %>   
+    <%= stylesheet_link_tag    "application" %>
+   <%= javascript_include_tag "application" %>
    <%= stylesheet_link_tag "demo.css","button.css" %>
-    <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Oswald' %>
-  
+   <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Oswald' %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
-    
-    <script type="text/javascript">var switchTo5x=true;</script>  
+
+   <script type="text/javascript">var switchTo5x=true;</script>  
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> 
     <script type="text/javascript">stLight.options({publisher: "ur-bc10ed40-a188-b920-e917-a51f8d8964d5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
+   
    <style>
         /* ------------------------------------------------------------------------------------------------------------- RESET */
 
@@ -91,7 +91,13 @@
     <%= link_to "Login", new_user_session_path %>  
     <%= link_to "Register", new_user_registration_path %>
   <% end %>
-
+ 
+        <% if @cart %>
+        <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+          <%= render @cart %>
+        <% end %>
+        <% end %>
+    
 </strong>
 <br>
 

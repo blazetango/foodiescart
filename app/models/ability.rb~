@@ -8,7 +8,7 @@ class Ability
    end
 
    if admin_user.role=='blogger'
-    can :manage,  :recipes
+    can :manage,  Recipes
    end
  end
     #
@@ -29,5 +29,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
 end

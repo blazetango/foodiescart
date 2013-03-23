@@ -3,12 +3,17 @@ class Recipe < ActiveRecord::Base
   acts_as_taggable_on :tag_list
   paginates_per 2
  attr_accessible :author_name, :category_id, :cooking_time, :difficulty_level, :name, :photo,
-                 :preparation_method, :user_id, :ingredient_recipes_attributes, :tag_list
-
+                 :preparation_method, :user_id, :ingredient_recipes_attributes, :tag_list,:prep_methods_attributes,
+:prep_time,:tips,:servers, :course,:origin_place_name , :tested
+ 
+ belongs_to :origin_place
  has_many :ingredient_recipes
+ has_many :prep_methods
+ has_many :ratings
  belongs_to :category
  belongs_to :user
  accepts_nested_attributes_for :ingredient_recipes
+ accepts_nested_attributes_for :prep_methods
  # before_create :product_empty
  validates :author_name, :presence => true
  
@@ -38,6 +43,13 @@ def self.search(search)
   #end
 end
 
+def origin_place_name
+    origin_place.try(:country)
+  end
+  
+  def origin_place_name=(country)
+    self.origin_place = OriginPlace.find_or_create_by_country(country) if country.present?
+  end
 
 
 

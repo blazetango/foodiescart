@@ -1,0 +1,20 @@
+index do                            
+    column :name                     
+    column :origin_of_recipe                
+    column :difficulty_level      
+    column :course       
+    
+    default_actions                   
+  end                                 
+
+                     
+
+  form do |f|                         
+    f.inputs "Recipes" do       
+      f.input :name	                  
+      f.input :origin_place_name, data: {autocomplete_source: origin_places_path}
+      f.input :difficulty_level , :collection => ["easy","difficult"]
+      f.input :course  , :collection => [ "starters","main course","desserts"] %>
+    end                               
+    f.buttons                         
+  end                                 

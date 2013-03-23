@@ -1,6 +1,6 @@
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
-//
+//$(".image").fancybox_group ,({'type':'iframe' });
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
@@ -11,14 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require fancybox
+
+//= require jquery-ui
 //= require jquery_ujs
-//= require autocomplete-rails
 //= require jquery_nested_form
 //= require_tree .
 
 
-$(document).ready(function(){
- $("a.image").fancybox ,({'type':'image' });
- $("a.fancybox").fancybox({'type':'ajax' });
-});
+

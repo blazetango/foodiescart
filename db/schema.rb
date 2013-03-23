@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301123158) do
+ActiveRecord::Schema.define(:version => 20130323081050) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20130301123158) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "ingredient_id"
+    t.string   "quantity"
   end
 
   create_table "ingredients", :force => true do |t|
@@ -168,6 +169,29 @@ ActiveRecord::Schema.define(:version => 20130301123158) do
     t.string   "state"
   end
 
+  create_table "origin_places", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "country"
+  end
+
+  create_table "origins", :force => true do |t|
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
+  end
+
+  create_table "prep_methods", :force => true do |t|
+    t.string   "steps"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "recipe_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
   create_table "products", :force => true do |t|
     t.integer  "ingredient_id"
     t.integer  "brand_id"
@@ -193,10 +217,11 @@ ActiveRecord::Schema.define(:version => 20130301123158) do
   end
 
   create_table "ratings", :force => true do |t|
-    t.integer  "value"
     t.integer  "recipe_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "value"
   end
 
   create_table "recipes", :force => true do |t|
@@ -213,7 +238,14 @@ ActiveRecord::Schema.define(:version => 20130301123158) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.string   "slug"
-    t.boolean  "tested"
+    t.string   "course"
+    t.integer  "servers"
+    t.string   "tips"
+    t.time     "prep_time"
+    t.string   "orig"
+    t.integer  "orig_id"
+    t.integer  "tested"
+    t.integer  "origin_place_id"
   end
 
   create_table "roles", :force => true do |t|

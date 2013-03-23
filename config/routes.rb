@@ -7,7 +7,7 @@ Foodiescart2::Application.routes.draw do
 
 
   resources :comments
-
+  resources :ratings
   get 'recipes/search', :as => :search
   get "wallets/show"
 
@@ -50,6 +50,9 @@ Foodiescart2::Application.routes.draw do
   resources :ingredient_recipes do
    get :autocomplete_ingredient_name, :on => :collection
   end
+
+   resources :origin_places
+  
 
   resources :recipes
   resources :dashboards

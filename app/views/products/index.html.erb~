@@ -1,29 +1,17 @@
+
 <h1>Listing products</h1>
-<table>
-  <tr>
-    <th>select action </th>
-    <th>Ingredient</th>
-    <th>Brand</th>
-    <th>Price</th>
-  </tr> 
-
 <% if !@products.blank? %>  
-<%= form_for @product, :url => selected_line_items_path, :method=> :post do |f| %>
-    <%= submit_tag "buy Selected items", :class=> "button" %>
- <% @products.each do |p| %>
-    <tr>
-     <td><%= check_box_tag('[product_ids][]', p.id) %></td>
-     <td><%= f.text_field :quantity %>
-     <td><%= p.ingredient.name %></td>
-     <td><%= p.brand.company_name %></td>
-     <td><%= p.price %></td>
-     <td><%= link_to 'show', p %>
-    </tr>
-  <% end %>
-  </table>
 
- <% end %>
-<% end %>
+  <% @products.each do |p| %>
+    
+     Ingredient:  <%= p.ingredient.name %> <br>
+     Brand: <%= p.brand.company_name %> <br>
+     Price: <%= p.price %><br>
+     <%= link_to image_tag(p.photo(:thumb)), p, :remote=> true, :class =>"fancybox-media" %> 
+
+    <% end %>
+</hr>
+  <% end %>
 <br />
 
 <%= link_to 'New Product', new_product_path, :class=> "button" %>

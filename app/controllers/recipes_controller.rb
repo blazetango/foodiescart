@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
  before_filter :authenticate_user!
 
+
   # GET /recipes
   # GET /recipes.json
   def index
@@ -12,6 +13,7 @@ class RecipesController < ApplicationController
       #@recipes = Recipe.order("name").page(params[:page]).per(5)
       @recipes = Kaminari.paginate_array(Recipe.all).page(params[:page]).per(3)
       #@recipes = Recipe.all
+           @cart = current_cart
     end
   end
 
@@ -28,7 +30,9 @@ end
     @comment = Comment.new
     #@comments = Comment.find_all_by_recipe_id(@recipe)
     @comments = Comment.find_all_by_recipe_id(@recipe, :order => 'created_at DESC')
-  end
+    @cart = current_cart  
+    @rating = Rating.new 
+   end
 
   # GET /recipes/new
   # GET /recipes/new.json

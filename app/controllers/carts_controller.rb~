@@ -1,22 +1,13 @@
 class CartsController < ApplicationController
   def show
-    @cart = current_cart
+    @cart = current_cart 
+    @test = current_cart.line_item
+   logger.info"###################"+@test.inspect
         @transaction = OrderTransaction.new
 
 end 
 
-def create 
-    @transaction = OrderTransaction.create(params[:order_transaction])
-   
-     @line_item = LineItem.find(params[:line_item])
 
- @trasaction.product_id =  line_item.product_id
-    
-    @transaction = OrderTransaction.save
-  
-
-  end
- 
   
   
 

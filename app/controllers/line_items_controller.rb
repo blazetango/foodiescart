@@ -41,22 +41,22 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    
+    @product = Product.find(params[:product_id])
     @line_item = LineItem.create(params[:line_item])
-    @cart = Cart.new
-    @recipe = Recipe.find_by_id(:recipe_id)
-    @product = Product.find_by_id(:product_id)
-    @line_item.cart_id = @cart.id
-    logger.info"@@@@@@@@@@@@@"+@product.inspect 
+    @recipe = Recipe.find(params[:recipe_id])
+    @line_item.cart = current_cart
     @line_item.quantity = 1
-    @line_item.product_id = @product   
-    @line_item.recipe_id = @recipe 
+    @line_item.product_id = @product.id   
+    @line_item.recipe_id = @recipe.id
 
    # @product = Product.find("#{@line_item.product_id}")
     @line_item.save 
-    flash[:notice] = "Added  to cart."
+ 
+   	
+    flash[:notice] = "Added (#{@product.ingredient.name})  to cart."
     redirect_to current_cart_url
-  end
+     end 
+     
 
 def selected
     @product = Product.find(params[:product_ids])

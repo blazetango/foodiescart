@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  
   #before_filter :authenticate_user!
 
   helper_method :current_cart
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_ability
-    @current_ability ||= Ability.new(current_admin_user)
+    @current_ability ||= AdminAbility.new(current_admin_user)
   end 
 
   def current_cart

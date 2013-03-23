@@ -1,0 +1,10 @@
+<%= form_for(@rating) do |f| %>  
+
+ Rating of this recipe:
+  
+   <%= f.radio_button :value , "good"  %> Good
+   <%= f.radio_button :value , "average"  %> average 
+   <%= f.radio_button :value , "bad" %> Bad 	
+<%= f.submit 'rate' %>
+<% end %>
+

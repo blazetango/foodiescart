@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
  autocomplete :brand, :name
  autocomplete :ingredient, :name
 
