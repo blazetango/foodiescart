@@ -11,9 +11,10 @@ end
 def create
  @rating = Rating.new(params[:rating])
   if @rating.save
-   @recipe_update = Rating.find("#{@rating}").recipe.update_attributes(:tested => (@rating.recipe.tested)+1)
-
+   @recipe_update = @rating.recipe.update_attributes(:tested => (@rating.recipe.tested)+1)
    redirect_to @rating.recipe 
+   else 
+   redirect_to @rating.recipe,  notice: 'Recipe was successfully created.' 
   end 
 end 
 

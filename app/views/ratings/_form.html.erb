@@ -2,10 +2,10 @@
 
  Rating of this recipe:
   
-   <%= f.radio_button :value , "good"  %> Good
-   <%= f.radio_button :value , "average"  %> average 
-   <%= f.radio_button :value , "bad" %> Bad 	
-   <%= f.hidden_field :recipe_id , :value=>@recipe.id %>
+   <%= f.radio_button :value , 3  %> Good
+   <%= f.radio_button :value , 2   %> average 
+   <%= f.radio_button :value , 1 %> Bad 	
+ <%= f.hidden_field :recipe_id , :value=>@recipe.id %>
    <%= f.hidden_field :user_id , :value=>current_user.id %>
 <%= f.submit 'rate' %>
 <% end %>

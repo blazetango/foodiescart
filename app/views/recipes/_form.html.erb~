@@ -15,6 +15,14 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div><br>
+gallery photos of the recipe:
+<%= f.link_to_add "Add photos  steps", :uploads %><br><br>
+<%= f.fields_for :uploads do |task_form| %>
+
+   <p>Photo: <%= task_form.file_field :photo %></p>
+
+  <p><%= task_form.link_to_remove "Remove this steps" %> </p>
+<% end %><br>
 
  <div class="field">
     <%= f.label :Origin_country %><br />
@@ -91,12 +99,6 @@ Steps to cook the recipe:
   <%= task_form.link_to_remove "Remove this ingredient" %>
 <% end %><br>
 <%= f.link_to_add "Add ingredient", :ingredient_recipes %><br><br>
-
-
-
-
-
-
 
  <div class="field">
     <%= f.label :tips %><br />

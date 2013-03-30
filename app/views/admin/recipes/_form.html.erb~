@@ -1,20 +1,106 @@
-index do                            
-    column :name                     
-    column :oirgin_of_recipe                
-    column :difficulty_level      
-    column :course       
-    
-    default_actions                   
-  end                                 
+<%= nested_form_for(@recipe) do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
-                     
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  form do |f|                         
-    f.inputs "Recipes" do       
-      f.input :name	                  
-      f.input :origin_place_name, data: {autocomplete_source: origin_places_path}
-      f.input :difficulty_level , :collection => ["easy","difficult"]
-      f.input :course  , :collection => [ "starters","main course","desserts"] %>
-    end                               
-    f.buttons                         
-  end                                 
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div><br>
+
+ <div class="field">
+    <%= f.label :Origin_country %><br />
+    <%= f.text_field :origin_place_name, data: {autocomplete_source: origin_places_path}   %>
+
+
+
+
+  </div><br>
+ <div class="field">
+    <%= f.label :course %><br />
+    <%= f.select :course  , :collection => [ "starters","main course","desserts"] %>
+  </div><br>
+
+ <div class="field">
+    <%= f.label :servers %><br />
+    <%= f.text_field :servers %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.collection_select :category_id, Category.all, :id, :name, :default_prompt => "Select one category " %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :difficulty_level %><br />
+     <%= select("recipe", "difficulty_level", Recipe::LEVELS, {:include_blank => "Select Level"}) %>
+  </div><br>
+<div class="field">
+    <%= f.label :prepration_time %><br />
+    <%= f.time_select :prep_time, :class => 'datetime_select' %> min/sec
+  </div><br>
+
+  <div class="field">
+    <%= f.label :cooking_time %><br />
+    <%= f.time_select :cooking_time, :class => 'datetime_select' %> min/sec
+  </div><br>
+ <%= f.hidden_field :tested , :value=> 0  %>
+ <!-- <div class="field">
+    <%= f.label :preparation_method %><br />
+    <%= f.text_area :preparation_method %>
+  </div><br>  -->
+Steps to cook the recipe:
+<%= f.link_to_add "Add steps", :prep_methods %><br><br>
+<%= f.fields_for :prep_methods do |task_form| %>
+<p>
+  <%= task_form.text_field :steps %><br></p>
+
+   <p>Photo: <%= task_form.file_field :photo %></p>
+
+  <p><%= task_form.link_to_remove "Remove this steps" %> </p>
+<% end %><br>
+
+
+  <div class="field">
+    <%= f.label :author_name %><br />
+    <%= f.text_field :author_name %>
+  </div><br>
+  <div class="field">
+    <%= f.label :add_photo %><br />
+    <%= f.file_field :photo %>
+  </div><br>
+
+
+<div id="ingredient" style="margin:100px">
+<%= f.fields_for :ingredient_recipes do |task_form| %>
+ Ingredient <%= task_form.autocomplete_field :ingredient_name, autocomplete_ingredient_name_ingredient_recipes_path %>
+ | quantity<%=   task_form.autocomplete_field :quantity,autocomplete_ingredient_name_ingredient_recipes_path %>
+  <%= task_form.link_to_remove "Remove this ingredient" %>
+<% end %><br>
+<%= f.link_to_add "Add ingredient", :ingredient_recipes %><br><br>
+
+ <div class="field">
+    <%= f.label :tips %><br />
+    <%= f.text_field :tips %>
+  </div><br>
+
+
+<%= f.hidden_field :user_id , :value=>current_user.id  %>
+<br><br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

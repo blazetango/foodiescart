@@ -23,8 +23,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'activeadmin-cancan'
 gem 'omniauth-google'
-gem 'countries'
-
+gem "jquery-fileupload-rails"
 
 
 

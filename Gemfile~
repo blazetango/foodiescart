@@ -24,7 +24,7 @@ gem 'omniauth-google-oauth2'
 gem 'activeadmin-cancan'
 gem 'omniauth-google'
 gem 'countries'
-gem 'rails3-jquery-autocomplete'
+
 
 
 

@@ -19,6 +19,7 @@
 
 </div>
 
+
    <% if @recipe.photo.exists? then %>
    <%= link_to image_tag(@recipe.photo.url(:thumb)), @recipe.photo.url(:small), :remote =>true, :class => "fancybox-media" %>
  
@@ -45,8 +46,23 @@
 <p>
   <b>Category:</b>
   <%= @recipe.category.name %>
+<p>
 </p>
-   <%= render :partial =>"ratings/form"  %>
+<% @recipe.uploads.each do |h|  %>
+<%= image_tag(h.photo.url(:thumb) )   %>
+<% end %>
+<p>
+ <%= render :partial =>"ratings/form"  %>
+</p>
+
+<% if @recipe.aver_rating >= 2.5   %>
+<b>Good recipe </b> </br>
+<% elsif @recipe.aver_rating >=2   %>
+<b> Average recipe </b> </br>
+<% else  %>
+ bad recipe </br>
+
+<% end %>
 <p>
   prepartion time:</br>
   <b><%= image_tag('time.png', :size=>"25x20")%></b>
@@ -88,7 +104,7 @@
       <h3 style ="color:green"><%= model_class.human_attribute_name(:method) %>:</h3>
     
              <ol><% @recipe.prep_methods.each  do |f| %>
-               <li><%= f.steps   %>  | 	<%= image_tag f.photo.url(:medium) %></li>
+               <li><%= f.steps   %>  | 	<%= image_tag f.photo.url(:thumb) %></li>
 
              <% end %></ol>
 <hr>

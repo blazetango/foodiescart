@@ -32,6 +32,7 @@ end
     @comments = Comment.find_all_by_recipe_id(@recipe, :order => 'created_at DESC')
     @cart = current_cart  
     @rating = Rating.new 
+    @rat_show = Rating.find_all_by_recipe_id(@recipe)
    end
 
   # GET /recipes/new

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323081050) do
+ActiveRecord::Schema.define(:version => 20130330091509) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(:version => 20130323081050) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
-    t.string   "value"
+    t.integer  "value"
   end
 
   create_table "recipes", :force => true do |t|
@@ -269,6 +269,15 @@ ActiveRecord::Schema.define(:version => 20130323081050) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.integer  "recipe_id"
   end
 
   create_table "users", :force => true do |t|
