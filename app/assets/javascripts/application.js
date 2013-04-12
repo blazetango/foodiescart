@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require fancybox
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery_nested_form
@@ -18,4 +19,27 @@
 //= require_tree .
 
 
-
+ $(document).ready(function () {
+      /* fancybox handler */
+      $('.fancybox-media').fancybox({
+          openEffect: 'none',
+          closeEffect: 'none',
+          autoSize: true,
+          type: 'iframe',
+          iframe: {
+              preload: false // fixes issue with iframe and IE
+          }
+      });
+  });
+$(document).ready(function () {
+      /* fancybox handler */
+      $('.fancybox').fancybox({
+          openEffect: 'none',
+          closeEffect: 'none',
+          autoSize: true,
+          type: 'ajax',
+          iframe: {
+              preload: false // fixes issue with iframe and IE
+          }
+      });
+  });

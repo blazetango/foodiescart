@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Foodies Cart" %></title>
+
+<%= javascript_include_tag :defaults %>
     <%= stylesheet_link_tag    "application" %>
    <%= javascript_include_tag "application" %>
    <%= stylesheet_link_tag "demo.css","button.css" %>
@@ -88,9 +90,13 @@
     <%= current_user.email %>
     <%= link_to "LOGOUT", destroy_user_session_path, :method=>:delete %>
   <% else %>
+<%= link_to 'Login with Facebook', '/auth/facebook/' %>
+<%= link_to 'Login with google', '/auth/google_oauth2' %>
     <%= link_to "Login", new_user_session_path %>  
+  
     <%= link_to "Register", new_user_registration_path %>
   <% end %>
+
  
         <% if @cart %>
         <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>

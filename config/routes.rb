@@ -32,7 +32,10 @@ Foodiescart2::Application.routes.draw do
 
   #devise_for :admin_users, ActiveAdmin::Devise.config, ActiveAdmin::Devise.config
 
-  devise_for :users
+  devise_for :users do
+ get 'logout' => 'devise/sessions#destroy'
+end
+
 
   #post 'line_items/selected'
 
